@@ -1,4 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App';
+import { setup } from 'goober';
 
-ReactDOM.render(<div> This a app</div>, document.getElementById('root'));
+setup(React.createElement);
+
+ReactDOM.render(<App />, document.getElementById('root'));

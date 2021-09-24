@@ -32,6 +32,17 @@ module.exports = {
                 test: /\.(woff(2)?|eot|ttf|otf|svg|)$/,
                 type: 'asset/inline',
             },
+            {
+                test: /\.(png|jp(e*)g|svg|gif)$/,
+                    use: [
+                            {
+                                loader: 'file-loader',
+                                options: {
+                                    name: 'images/[hash]-[name].[ext]',
+                                },
+                        },
+                    ],
+            },
         ],
     },
     resolve: {
@@ -39,7 +50,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, './src/index.html'),
+            template: path.resolve(__dirname, './public/index.html'),
         }),
         new CleanWebpackPlugin(),
     ],
