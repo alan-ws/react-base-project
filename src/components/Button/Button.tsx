@@ -1,5 +1,13 @@
-function Button() {
-  return <button>PLAY</button>;
+import { memo } from 'react';
+import { Button } from './Button.style';
+
+interface IButton {
+  label: string;
+  fn?: () => void;
+  disable?: boolean;
+  loading?: boolean;
 }
 
-export default Button;
+export const ActionButton = memo(({ label, fn }: IButton) => {
+  return <Button onClick={fn && fn}>{label}</Button>;
+});

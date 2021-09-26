@@ -1,4 +1,6 @@
-export const handleError = (error: any): void => {
+// change console.log with whatever error handling functions
+
+export const handleError = (error: unknown): void => {
   if (process.env.NODE_ENV === 'development') {
     console.log(error);
   }

@@ -1,9 +1,11 @@
 import { uiSlice } from './ui.slice';
-import { takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 import { SagaIterator } from 'redux-saga';
 
-function* setBasicUiChange(): SagaIterator {}
+function* initiateConsoleLog(): SagaIterator {
+  yield put(uiSlice.actions.setConsoleLogValue('you clicked it'));
+}
 
 export function* uiSaga(): SagaIterator {
-  yield takeLatest(uiSlice.actions.setBasicUiChange.type, setBasicUiChange);
+  yield takeLatest(uiSlice.actions.initiateConsoleLog.type, initiateConsoleLog);
 }

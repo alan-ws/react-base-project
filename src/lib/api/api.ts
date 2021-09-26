@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { handleNetworkError } from '../utilities/errorHandling';
+import { handleNetworkError } from '../utils/errorHandling';
 import Cookies from 'js-cookie';
 
 export type Endpoint<T> = {
@@ -8,14 +8,11 @@ export type Endpoint<T> = {
 };
 
 export const version = 'v2';
-const baseURL = 'https://localhost/';
+const baseURL = '';
 
 export const defaultHeaders: RequestHeaders = {
   Accept: 'application/ld+json',
   'Content-Type': 'application/json',
-  'X-Client-Platform': 'Web',
-  'X-Client-Name': 'Web',
-  'X-Client-Version': '1.0.0',
 };
 
 export const request = async <ResponseData>(
@@ -26,15 +23,10 @@ export const request = async <ResponseData>(
   const token = jwtTokenOverride || Cookies.get('token');
   const headers: RequestHeaders = {
     ...(customHeaders || defaultHeaders),
-    'X-Header': sessionStorage.getItem('x-header'),
   };
 
   if (token) {
     headers.Authorization = `Bearer ${token}`;
-  }
-
-  if (method === 'PATCH') {
-    headers['Content-Type'] = 'application/merge-patch+json';
   }
 
   const options: AxiosRequestConfig = {
@@ -44,7 +36,7 @@ export const request = async <ResponseData>(
     data,
     params,
     headers,
-    responseType: responseType || 'json',
+    responseType,
   };
 
   return axios(options)

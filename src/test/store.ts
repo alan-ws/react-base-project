@@ -1,4 +1,4 @@
-import { getStore, RootState } from '../modules/store';
+import { getStore, RootState } from '../lib/state/store';
 
 export function makeTestStore(initialStore: Partial<RootState> = {}) {
   const store = getStore(initialStore);

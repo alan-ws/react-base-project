@@ -1,9 +1,9 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
-import { uiSlice } from './ui/ui.slice';
 import rootState from './rootState';
 import { handleError } from '../utils/errorHandling';
 import { kernelSlice } from './kernel/kernel.slice';
+import { uiSlice } from './ui/ui.slice';
 
 const sagaMiddleware = createSagaMiddleware({
   onError: (error) => handleError(error),

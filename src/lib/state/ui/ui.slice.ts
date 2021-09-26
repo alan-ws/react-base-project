@@ -1,19 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface UiStore {
-  show: boolean;
+  consoleLogValue?: string;
 }
 
-export const uiSliceInitialState: UiStore = {
-  show: false,
-};
+export const uiSliceInitialState: UiStore = {};
 
 export const uiSlice = createSlice({
   name: 'ui',
   initialState: uiSliceInitialState,
   reducers: {
-    setBasicUiChange(state, action: PayloadAction<boolean>) {
-      state.show = action.payload;
+    initiateConsoleLog(): void {},
+    setConsoleLogValue(state, action: PayloadAction<string>): void {
+      state.consoleLogValue = action.payload;
     },
   },
 });

@@ -1,4 +1,5 @@
-import { AxiosError, AxiosResponse, Method } from 'axios';
+import { AxiosError, AxiosResponse, Method, ResponseType } from 'axios';
+import { SyntheticEvent } from 'react';
 
 declare global {
   type RequestResponse<T> = { response: AxiosResponse<T> | null };
@@ -7,13 +8,23 @@ declare global {
     name: string;
     url: string;
     method: Method;
-    headers?: any;
-    params?: any;
-    data?: any;
+    headers: undefined;
+    params: undefined;
+    data: undefined;
     responseType?: ResponseType;
   };
   type ResponseReturn<Data> = RequestResponse<Data> & RequestError;
-  type RequestHeaders = any;
+  type ContentType = 'application/json';
+  type RequestHeaders = {
+    Accept: string;
+    'Content-Type': ContentType;
+    Authorization?: string;
+  };
+
+  interface IEvent<T = Element> extends SyntheticEvent<T> {
+    target: EventTarget & T;
+    relatedTarget: EventTarget | null;
+  }
 }
 
 export {};
